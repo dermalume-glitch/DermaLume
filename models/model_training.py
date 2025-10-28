@@ -80,7 +80,7 @@ print(classification_report(y_test, y_pred, target_names=label_encoder.classes_)
 # 🔟 Save model and label encoder
 joblib.dump(model, "skin_diagnosis_model.pkl")
 joblib.dump(label_encoder, "label_encoder.pkl")
-print("💾 Model and label encoder saved")
+print("💾 Model and label encoder was saved")
 
 # 1️⃣1️⃣ Sample prediction (first test sample)
 sample = X_test[0].reshape(1, -1)
