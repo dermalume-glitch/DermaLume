@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dermalume — Early Detection</title>
+  <meta name="description" content="Dermalume landing page generated from a Visily concept." />
+
+  <!-- Optional webfont -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Plain relative path (Live Server) -->
+  <link rel="stylesheet" href="static/css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="static/assets/logo.svg" alt="Dermalume logo" class="brand__logo" />
+        <span class="brand__name">Dermalume</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#gallery">Components</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a class="btn btn--small" href="#cta">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <h1 class="hero__title">Illuminating the Path to Early Detection</h1>
+          <p class="hero__subtitle">Dermalume is a smart scanner concept that detects skin abnormalities early — bridging healthcare and innovation.</p>
+          <div class="hero__actions">
+            <a class="btn" href="#cta">Learn More</a>
+            <a class="btn btn--ghost" href="#features">Features</a>
+          </div>
+        </div>
+        <figure class="hero__visual">
+          <!-- Replace with your Visily export -->
+          <img src="static/assets/your-visily-image.png" alt="Dermalume app preview" />
+          <figcaption class="sr-only">Preview of the Dermalume interface</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section__title">Key Features</h2>
+        <p class="section__lead">Swap the copy with your exact Visily text.</p>
+
+        <div class="grid cards-3">
+          <article class="card">
+            <h3 class="card__title">AI-Powered</h3>
+            <p class="card__text">Fast classification of lesions using ML.</p>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Easy to Use</h3>
+            <p class="card__text">Simple, clear UI for any age group.</p>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Accessible</h3>
+            <p class="card__text">Focus on early detection for everyone.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Components / Gallery -->
+    <section id="gallery" class="section section--alt">
+      <div class="container">
+        <h2 class="section__title">Components</h2>
+        <div class="grid gallery">
+          <div class="tile"><h3 class="tile__title">Card</h3><p>Feature highlights.</p></div>
+          <div class="tile"><h3 class="tile__title">CTA Banner</h3><p>Primary action strip.</p></div>
+          <div class="tile"><h3 class="tile__title">Media Block</h3><p>Text + preview image.</p></div>
+          <div class="tile"><h3 class="tile__title">Form</h3><p>Newsletter or contact.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <div class="container">
+        <h2 class="section__title">Pricing</h2>
+        <div class="grid cards-3">
+          <article class="card">
+            <h3 class="card__title">Starter</h3>
+            <p class="card__price">$0</p>
+            <ul class="card__list">
+              <li>Core components</li><li>Email support</li>
+            </ul>
+            <a class="btn btn--small" href="#cta">Choose</a>
+          </article>
+          <article class="card card--highlight">
+            <h3 class="card__title">Pro</h3>
+            <p class="card__price">$29</p>
+            <ul class="card__list">
+              <li>Full set</li><li>Priority support</li>
+            </ul>
+            <a class="btn btn--small" href="#cta">Choose</a>
+          </article>
+          <article class="card">
+            <h3 class="card__title">Team</h3>
+            <p class="card__price">$99</p>
+            <ul class="card__list">
+              <li>Multi-seat</li><li>Handoff tools</li>
+            </ul>
+            <a class="btn btn--small" href="#cta">Choose</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="section section--cta">
+      <div class="container cta">
+        <div class="cta__content">
+          <h2>Get Notified When Dermalume Launches</h2>
+          <p>Hook up your assets, swap copy, and ship.</p>
+        </div>
+        <form class="cta__form" id="cta-form" aria-label="Signup form">
+          <label class="sr-only" for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" required />
+          <button class="btn" type="submit">Notify Me</button>
+          <p class="form__msg" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Dermalume. All rights reserved.</p>
+      <nav aria-label="Footer">
+        <ul class="footer-nav">
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Plain relative path (Live Server) -->
+  <script src="static/js/script.js" defer></script>
+</body>
+</html>
