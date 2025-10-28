@@ -3,162 +3,177 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dermalume — Early Detection</title>
-  <meta name="description" content="Dermalume landing page generated from a Visily concept." />
-
-  <!-- Optional webfont -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Plain relative path (Live Server) -->
+  <title>DermaLume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="static/css/styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- Header -->
+  <!-- Header / Nav -->
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#">
-        <img src="static/assets/logo.svg" alt="Dermalume logo" class="brand__logo" />
-        <span class="brand__name">Dermalume</span>
+    <div class="container nav-wrap">
+      <a href="#home" class="brand">
+        <span class="brand-logo">🛡️</span>
+        <span class="brand-name">DermaLume</span>
       </a>
-
-      <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">
-          <span class="nav-toggle__bar" aria-hidden="true"></span>
-          <span class="sr-only">Menu</span>
-        </button>
-        <ul id="nav-menu" class="nav-menu">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#gallery">Components</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a class="btn btn--small" href="#cta">Get Started</a></li>
-        </ul>
+      <nav class="main-nav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#analyze" class="nav-link">Analyze</a>
+        <a href="#results" class="nav-link">Results</a>
       </nav>
+      <a class="btn btn-ghost small" href="#login" aria-label="Log in">Log In</a>
     </div>
   </header>
 
-  <main id="main">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container hero__grid">
-        <div class="hero__content">
-          <h1 class="hero__title">Illuminating the Path to Early Detection</h1>
-          <p class="hero__subtitle">Dermalume is a smart scanner concept that detects skin abnormalities early — bridging healthcare and innovation.</p>
-          <div class="hero__actions">
-            <a class="btn" href="#cta">Learn More</a>
-            <a class="btn btn--ghost" href="#features">Features</a>
+  <main>
+    <!-- Home / Hero -->
+    <section id="home" class="section hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div>
+            <h1 class="display">DermaLume</h1>
+            <p class="muted mt-2">Illuminating the path to early skin irregularity detection.</p>
+          </div>
+          <div class="mt-4">
+            <a class="btn" href="#analyze">Try Scan</a>
           </div>
         </div>
-        <figure class="hero__visual">
-          <!-- Replace with your Visily export -->
-          <img src="static/assets/your-visily-image.png" alt="Dermalume app preview" />
-          <figcaption class="sr-only">Preview of the Dermalume interface</figcaption>
+
+        <figure class="hero-media" aria-label="skin close-up preview">
+          <div class="img-placeholder"></div>
         </figure>
       </div>
     </section>
 
-    <!-- Features -->
-    <section id="features" class="section">
+    <!-- Analyze Form -->
+    <section id="analyze" class="section analyze">
       <div class="container">
-        <h2 class="section__title">Key Features</h2>
-        <p class="section__lead">Swap the copy with your exact Visily text.</p>
+        <h2 class="page-title">Analysis Form</h2>
+        <div class="grid-2 gap-lg">
+          <!-- Upload + Details -->
+          <div class="card">
+            <form id="analysisForm" class="form">
+              <div class="form-block">
+                <label class="form-label">Upload Skin Spot Image</label>
+                <div id="dropzone" class="dropzone" tabindex="0">
+                  <input type="file" id="imageInput" accept="image/*" hidden />
+                  <div id="preview" class="preview">Drag & drop, or click to browse.</div>
+                  <p class="hint">PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>
 
-        <div class="grid cards-3">
-          <article class="card">
-            <h3 class="card__title">AI-Powered</h3>
-            <p class="card__text">Fast classification of lesions using ML.</p>
-          </article>
-          <article class="card">
-            <h3 class="card__title">Easy to Use</h3>
-            <p class="card__text">Simple, clear UI for any age group.</p>
-          </article>
-          <article class="card">
-            <h3 class="card__title">Accessible</h3>
-            <p class="card__text">Focus on early detection for everyone.</p>
-          </article>
+              <div class="form-block">
+                <label class="form-label">Your Details</label>
+                <div class="two">
+                  <div class="field">
+                    <label for="age">Age</label>
+                    <input id="age" type="number" placeholder="Enter age" min="0" max="120"/>
+                  </div>
+                  <div class="field">
+                    <label>Gender</label>
+                    <div class="radio-row">
+                      <label><input type="radio" name="gender" value="Male" checked> Male</label>
+                      <label><input type="radio" name="gender" value="Female"> Female</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>Spot Location</label>
+                  <select id="location">
+                    <option>Face</option>
+                    <option>Back</option>
+                    <option>Scalp</option>
+                    <option>Ear</option>
+                    <option>Trunk</option>
+                    <option>Chest</option>
+                    <option>Abdomen</option>
+                    <option>Lower Extremity</option>
+                    <option>Upper Extremity</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="reset" class="btn btn-ghost">Clear Form</button>
+                <button id="submitBtn" type="submit" class="btn">Submit Analysis</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Tips -->
+          <aside class="card">
+            <h3 class="card-title">Analysis Guidelines & Tips</h3>
+            <ul class="tips">
+              <li><strong>Good Lighting:</strong> use natural, even lighting. Avoid shadows or harsh flash.</li>
+              <li><strong>In-focus & Close-up:</strong> keep the spot sharply in focus and fill most of the frame.</li>
+              <li><strong>Single Spot per Image:</strong> use one image per suspicious spot.</li>
+              <li><strong>Clean Background:</strong> avoid busy backgrounds or surrounding skin context.</li>
+              <li><strong>Reminder:</strong> DermaLume provides preliminary analysis and is not a substitution for professional medical advice.</li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Components / Gallery -->
-    <section id="gallery" class="section section--alt">
+    <!-- Results -->
+    <section id="results" class="section results">
       <div class="container">
-        <h2 class="section__title">Components</h2>
-        <div class="grid gallery">
-          <div class="tile"><h3 class="tile__title">Card</h3><p>Feature highlights.</p></div>
-          <div class="tile"><h3 class="tile__title">CTA Banner</h3><p>Primary action strip.</p></div>
-          <div class="tile"><h3 class="tile__title">Media Block</h3><p>Text + preview image.</p></div>
-          <div class="tile"><h3 class="tile__title">Form</h3><p>Newsletter or contact.</p></div>
-        </div>
-      </div>
-    </section>
+        <h2 class="page-title">Diagnosis Results</h2>
 
-    <!-- Pricing -->
-    <section id="pricing" class="section">
-      <div class="container">
-        <h2 class="section__title">Pricing</h2>
-        <div class="grid cards-3">
-          <article class="card">
-            <h3 class="card__title">Starter</h3>
-            <p class="card__price">$0</p>
-            <ul class="card__list">
-              <li>Core components</li><li>Email support</li>
-            </ul>
-            <a class="btn btn--small" href="#cta">Choose</a>
-          </article>
-          <article class="card card--highlight">
-            <h3 class="card__title">Pro</h3>
-            <p class="card__price">$29</p>
-            <ul class="card__list">
-              <li>Full set</li><li>Priority support</li>
-            </ul>
-            <a class="btn btn--small" href="#cta">Choose</a>
-          </article>
-          <article class="card">
-            <h3 class="card__title">Team</h3>
-            <p class="card__price">$99</p>
-            <ul class="card__list">
-              <li>Multi-seat</li><li>Handoff tools</li>
-            </ul>
-            <a class="btn btn--small" href="#cta">Choose</a>
-          </article>
+        <div class="card result-card">
+          <div class="result-top">
+            <div>
+              <span id="riskPill" class="pill">Low Risk</span>
+              <h3 class="result-heading">Low Risk: Benign Pigmented Lesion</h3>
+              <p class="muted">AI Confidence Score: <span id="confidence">—</span></p>
+              <div class="mt-3">
+                <ul class="checklist" id="checklist">
+                  <li>Symmetry</li>
+                  <li>Border Regularity</li>
+                  <li>Color Uniformity</li>
+                  <li>Diameter &lt; 6mm</li>
+                  <li>Evolution (Stable)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="result-image">
+              <div id="resultPreview" class="img-placeholder small"></div>
+              <button class="btn btn-ghost small mt-2" id="reanalyzeBtn">Re‑analyze Another Spot</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA -->
-    <section id="cta" class="section section--cta">
-      <div class="container cta">
-        <div class="cta__content">
-          <h2>Get Notified When Dermalume Launches</h2>
-          <p>Hook up your assets, swap copy, and ship.</p>
+        <div class="card mt-xl">
+          <h3 class="card-title">Next Steps & Personalized Recommendations</h3>
+          <ul class="bullets">
+            <li>Monitor the spot monthly for changes in size, shape, or color; keep a personal skin log.</li>
+            <li>Do regular full‑body self‑checks to catch new or changing spots.</li>
+            <li>Use broad‑spectrum SPF 30+ daily; limit peak‑hour sun exposure (10 AM–4 PM).</li>
+            <li>Consider an annual professional skin check with a dermatologist.</li>
+          </ul>
+          <button class="btn small">Schedule a Consultation</button>
         </div>
-        <form class="cta__form" id="cta-form" aria-label="Signup form">
-          <label class="sr-only" for="email">Email</label>
-          <input id="email" name="email" type="email" placeholder="Enter your email" required />
-          <button class="btn" type="submit">Notify Me</button>
-          <p class="form__msg" aria-live="polite"></p>
-        </form>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Dermalume. All rights reserved.</p>
-      <nav aria-label="Footer">
-        <ul class="footer-nav">
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
-        </ul>
+    <div class="container footer-wrap">
+      <nav class="subnav">
+        <a href="#">Quick Links</a>
+        <a href="#">Support</a>
       </nav>
+      <div class="social">
+        <a href="#" aria-label="facebook">f</a>
+        <a href="#" aria-label="twitter">𝕏</a>
+        <a href="#" aria-label="instagram">◎</a>
+        <a href="#" aria-label="linkedin">in</a>
+      </div>
     </div>
   </footer>
 
-  <!-- Plain relative path (Live Server) -->
   <script src="static/js/script.js" defer></script>
 </body>
 </html>
