@@ -19,6 +19,10 @@ metadata_path = os.path.join("..", "data", "HAM10000_metadata_preprocessed.csv")
 df = pd.read_csv(metadata_path)
 print("✅ Metadata loaded:", df.shape)
 
+# LIMIT TO 2000 ROWS FOR FASTER TRAINING (ensuring enough samples per class)
+df = df.head(2000)
+print("📊 Limited to", len(df), "rows for faster training")
+
 # 2️⃣ Drop columns we don't want: dx_type, age_outlier_flag
 df = df.drop(columns=["dx_type", "age_outlier_flag"])
 
@@ -75,7 +79,10 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"🔹 Accuracy: {accuracy*100:.2f}%")
 print("\nClassification Report:")
-print(classification_report(y_test, y_pred, target_names=label_encoder.classes_))
+# Get unique labels in test set to handle cases where not all classes are present
+unique_labels = np.unique(np.concatenate([y_test, y_pred]))
+target_names = [str(label_encoder.inverse_transform([label])[0]) for label in unique_labels]
+print(classification_report(y_test, y_pred, labels=unique_labels, target_names=target_names))
 
 # 🔟 Save model and label encoder
 joblib.dump(model, "skin_diagnosis_model.pkl")

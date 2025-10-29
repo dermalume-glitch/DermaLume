@@ -1,0 +1,24 @@
+/Users/oumnia/Documents/GitHub/DermaLume/venv/lib/python3.13/site-packages/sklearn/metrics/_classification.py:1731: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f"{metric.capitalize()} is", result.shape[0])
+✅ Metadata loaded: (10015, 9)
+⏳ Loading images...
+✅ Images loaded: (10015, 12288)
+✅ Combined features shape: (10015, 12291)
+✅ Train/test split: 8012 train, 2003 test
+⏳ Training model... (this may take a while)
+✅ Model trained
+🔹 Accuracy: 72.79%
+
+Classification Report:
+Traceback (most recent call last):
+  File "/Users/oumnia/Documents/GitHub/DermaLume/models/model_training.py", line 78, in <module>
+    print(classification_report(y_test, y_pred, target_names=label_encoder.classes_))
+          ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/oumnia/Documents/GitHub/DermaLume/venv/lib/python3.13/site-packages/sklearn/utils/_param_validation.py", line 218, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/oumnia/Documents/GitHub/DermaLume/venv/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 3001, in classification_report
+    name_width = max(len(cn) for cn in target_names)
+  File "/Users/oumnia/Documents/GitHub/DermaLume/venv/lib/python3.13/site-packages/sklearn/metrics/_classification.py", line 3001, in <genexpr>
+    name_width = max(len(cn) for cn in target_names)
+                     ~~~^^^^
+TypeError: object of type 'numpy.int64' has no len()

@@ -36,25 +36,98 @@ if (dropzone && imageInput && preview){
   });
 }
 
-// Fake analysis and populate results
+// Real API analysis
 const form = document.getElementById('analysisForm');
 const submitBtn = document.getElementById('submitBtn');
 if (form && submitBtn){
-  form.addEventListener('submit', (e)=>{
+  form.addEventListener('submit', async (e)=>{
     e.preventDefault();
+    
+    // Get form data
+    const imageFile = document.getElementById('imageInput').files?.[0];
+    const age = document.getElementById('age').value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    const location = document.getElementById('location').value;
+    
+    if (!imageFile || !age || !gender || !location) {
+      alert('Please fill all fields and upload an image');
+      return;
+    }
+    
+    // Create form data
+    const formData = new FormData();
+    formData.append('image', imageFile);
+    formData.append('age', age);
+    formData.append('gender', gender);
+    formData.append('location', location);
+    
+    console.log('Sending data:', {
+      image: imageFile.name,
+      age: age,
+      gender: gender,
+      location: location
+    });
+    
     submitBtn.disabled = true;
     submitBtn.textContent = 'Analyzing…';
 
-    setTimeout(()=>{
-      const confidence = (85 + Math.floor(Math.random()*10)) + '%';
-      document.getElementById('confidence').textContent = confidence;
-      document.getElementById('riskPill').textContent = 'Low Risk';
-      // mark checklist visually (already checked via CSS)
-      // scroll to results
-      document.getElementById('results').scrollIntoView({behavior:'smooth'});
+    try {
+      // Call the API
+      const response = await fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        body: formData
+      });
+      
+      // Check if response is ok before parsing JSON
+      const responseText = await response.text();
+      console.log('Response status:', response.status);
+      console.log('Response text:', responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch (e) {
+        console.error('Failed to parse response:', e);
+        throw new Error('Server returned invalid response');
+      }
+      
+      if (response.ok) {
+        // Update UI with results
+        const confidence = Math.round(result.confidence * 100) + '%';
+        document.getElementById('confidence').textContent = confidence;
+        
+        // Map diagnosis to risk level
+        const riskMapping = {
+          'mel': 'High Risk - Cancerous',      // Melanoma
+          'bcc': 'High Risk - Cancerous',      // Basal cell carcinoma
+          'akiec': 'Medium Risk - Pre-cancerous', // Actinic keratoses
+          'bkl': 'Low Risk - Benign',          // Benign keratosis
+          'nv': 'Low Risk - Benign',           // Common moles
+          'df': 'Low Risk - Benign',           // Dermatofibroma
+          'vasc': 'Low Risk - Benign'          // Vascular lesions
+        };
+        
+        const riskLevel = riskMapping[result.prediction] || 'Unknown Risk';
+        const riskPill = document.getElementById('riskPill');
+        riskPill.textContent = riskLevel;
+        
+        // Update risk pill color
+        riskPill.className = 'pill ' + (riskLevel.includes('High') ? 'high' : riskLevel.includes('Medium') ? 'medium' : '');
+        
+        // Update diagnosis text
+        document.querySelector('.result-heading').textContent = `${riskLevel}: ${result.dx_full || result.prediction}`;
+        
+        // Scroll to results
+        document.getElementById('results').scrollIntoView({behavior:'smooth'});
+      } else {
+        alert('Error: ' + (result.error || 'Unknown error occurred'));
+      }
+    } catch (error) {
+      alert('Error connecting to server: ' + error.message);
+    } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit Analysis';
-    }, 1200);
+    }
   });
 }
 
